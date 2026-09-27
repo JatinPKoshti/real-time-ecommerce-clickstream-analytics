@@ -1,0 +1,51 @@
+{
+  "project_name": "real-time-ecommerce-clickstream-analytics",
+  "region": "ap-south-1",
+
+  "s3": {
+    "bucket": "<YOUR_PROJECT_2_BUCKET>",
+    "raw_prefix": "raw/events/",
+    "curated_prefix": "curated/events/",
+    "rejected_prefix": "rejected/events/",
+    "athena_results_prefix": "athena-results/"
+  },
+
+  "kinesis": {
+    "raw_stream": "ecommerce-clickstream-raw",
+    "processed_stream": "ecommerce-clickstream-processed"
+  },
+
+  "lambda": {
+    "function_name": "ecommerce-kinesis-stream-processor"
+  },
+
+  "firehose": {
+    "raw_delivery_stream": "ecommerce-raw-to-s3",
+    "processed_delivery_stream": "ecommerce-processed-to-s3"
+  },
+
+  "glue": {
+    "database": "ecommerce_analytics_db",
+    "crawler": "ecommerce-curated-events-crawler",
+    "table": "curated_events"
+  },
+
+  "athena": {
+    "workgroup": "ecommerce-analytics"
+  },
+
+  "quicksight": {
+    "dashboard": "Real-Time E-Commerce Clickstream Dashboard"
+  },
+
+  "cloudwatch": {
+    "dashboard": "ecommerce-clickstream-monitoring",
+    "lambda_error_alarm": "ecommerce-lambda-errors",
+    "kinesis_lag_alarm": "ecommerce-kinesis-consumer-lag"
+  },
+
+  "sns": {
+    "topic": "ecommerce-clickstream-alerts",
+    "email": "<YOUR_CONFIRMED_EMAIL>"
+  }
+}
